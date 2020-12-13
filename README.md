@@ -6,7 +6,7 @@ The main goal of this repository is to create the perfect environment for every 
 
 Having a container has multiple advantages:
 - [x] it is fast
-- [x] it is efficient
+- [x] it is efficient 🚀
 - [x] you can have a container per project, so they do not interfere with one another
 - [x] there is nothing more than what you need to code
 - [x] which means that there is everything you need to code 😎
