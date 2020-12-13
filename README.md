@@ -19,7 +19,14 @@ You will first need to build the docker image from the `Dockerfile`.
 
 To run the docker container from the image, simply run:
 
-    docker run -it docker.io/library/epita-container:1.0
+    docker run --rm -it docker.io/library/epita-container:1.0
+
+### Default users
+
+There are two registered users in the container by default:
+
+- `root` with password `root`
+- `epita` with password `epita`
 
 ## Installed packages 📦
 
