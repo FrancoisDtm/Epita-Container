@@ -20,14 +20,19 @@ RUN pacman -S --noconfirm nano awk zsh base-devel make cmake
 RUN echo "epita ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Install Yay for AUR packages
-RUN runuser -l epita -c 'git clone https://aur.archlinux.org/yay.git'
-RUN runuser -l epita -c 'cd yay && makepkg --noconfirm -si'
+USER epita
+RUN git clone https://aur.archlinux.org/yay.git /home/epita/yay
+RUN cd /home/epita/yay && makepkg --noconfirm -si
 RUN rm -drf /home/epita/yay
+USER root
 
 # Install C packages
 RUN pacman -S --noconfirm gcc clang gdb valgrind doxygen
 RUN pacman -S --noconfirm gtk3 gcovr graphviz llvm gtest
-RUN runuser -l epita -c 'yay -S --mflags --nocheck --noconfirm criterion lcov'
+
+USER epita
+RUN yay -S --mflags --nocheck --noconfirm criterion lcov
+USER root
 
 # Install Go packages
 RUN pacman -S --noconfirm go
@@ -42,8 +47,20 @@ RUN pacman -S --noconfirm rust
 RUN pacman -S --noconfirm python python-pip
 RUN pip install --user pre-commit pytest
 
+# Install Oh-My-Zsh
+USER epita
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+RUN git clone https://github.com/denysdovhan/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt --depth=1
+RUN ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship.zsh-theme
+
 # Copy files and folder
+USER epita
 COPY home /home/epita
+USER root
 COPY root /
 
+USER epita
+WORKDIR /home/epita
 ENTRYPOINT /bin/zsh
