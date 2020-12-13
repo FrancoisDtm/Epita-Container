@@ -1,0 +1,31 @@
+[user]
+	name = ADD_YOUR_NAME_HERE
+	email = ADD_YOUR_EMAIL_HERE
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
+[color]
+	ui = true
+
+[alias]
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
+  # Pretty log output
+  hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[pull]
+	rebase = false
