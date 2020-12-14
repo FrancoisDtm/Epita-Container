@@ -45,7 +45,9 @@ RUN pacman -S --noconfirm rust
 
 # Install Python packages
 RUN pacman -S --noconfirm python python-pip
+USER epita
 RUN pip install --user pre-commit pytest
+USER root
 
 # Install Oh-My-Zsh
 USER epita
@@ -57,6 +59,7 @@ RUN ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.z
 
 # Copy files and folder
 USER epita
+RUN touch /home/epita/.z
 COPY home /home/epita
 USER root
 COPY root /
