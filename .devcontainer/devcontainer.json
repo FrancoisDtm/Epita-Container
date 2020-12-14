@@ -1,0 +1,16 @@
+{
+	"name": "Epita Container",
+	"image": "docker.io/library/epita-container:1.0",
+	"containerUser": "epita",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/zsh"
+	},
+	"extensions": [
+		"ms-vscode.cpptools",
+		"ms-python.python",
+		"eamodio.gitlens",
+		"znck.grammarly",
+		"formulahendry.code-runner",
+		"mutantdino.resourcemonitor"
+	]
+}
