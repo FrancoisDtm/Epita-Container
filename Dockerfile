@@ -15,8 +15,11 @@ RUN pacman -Syu --noconfirm
 
 # Install default packages
 RUN pacman -S --noconfirm man man-pages man-db
-RUN pacman -S --noconfirm sudo openssh git wget curl
-RUN pacman -S --noconfirm nano awk zsh base-devel make cmake
+RUN pacman -S --noconfirm sudo openssh
+RUN pacman -S --noconfirm git wget curl
+RUN pacman -S --noconfirm awk zsh
+RUN pacman -S --noconfirm make cmake
+RUN pacman -S --noconfirm nano vim emacs
 RUN echo "epita ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Install Yay for AUR packages
