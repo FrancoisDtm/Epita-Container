@@ -11,7 +11,17 @@ Having a container has multiple advantages:
 - [x] there is nothing more than what you need to code
 - [x] which means that there is everything you need to code 😎
 
-## How to use? 📝
+## How to use? 📋
+
+You have two options. You can either download the pre-compiled image from the Docker Hub, or you can build it from the sources so that you can modify the image as you want.
+
+### Pull image from Docker Hub 🐳
+
+Simply run the following command and you're good to go:
+
+    docker run -it francoisdtm/epita-container:1.0
+
+### Building from the sources 📝
 
 You will first need to build the docker image from the `Dockerfile`.
 
@@ -19,9 +29,9 @@ You will first need to build the docker image from the `Dockerfile`.
 
 To run the docker container from the image, simply run:
 
-    docker run --rm -it docker.io/library/epita-container:1.0
+    docker run -it docker.io/library/epita-container:1.0
 
-### Default users
+### Default users 👬
 
 There are two registered users in the container by default:
 
