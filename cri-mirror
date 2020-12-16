@@ -1,0 +1,4 @@
+
+[cri]
+SigLevel = Optional TrustAll
+Server = https://s3.cri.epita.fr/cri-arch-pkg.s3.cri.epita.fr
