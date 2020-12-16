@@ -1,56 +1,27 @@
 FROM archlinux:base-devel
 
-# Set root password to 'root'
-RUN echo -e "root\nroot" | passwd
-
-# Add 'epita' user with password 'epita'
+# Add 'epita' user with password 'epita' and set root password to 'root'
 RUN useradd -m -s /bin/zsh epita
 RUN echo -e "epita\nepita" | passwd epita
+RUN echo "epita ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN echo -e "root\nroot" | passwd
 
-# Allows to add man pages
+# Allows to install Cri packages and allows to add man pages
+COPY cri-mirror /cri-mirror
+RUN cat /cri-mirror >> /etc/pacman.conf
 RUN sed -i 's-usr/share/man/\*--g' /etc/pacman.conf
 
-# Updates all packages
-RUN pacman -Syu --noconfirm
-
-# Install default packages
-RUN pacman -S --noconfirm man man-pages man-db
-RUN pacman -S --noconfirm sudo openssh
-RUN pacman -S --noconfirm git wget curl
-RUN pacman -S --noconfirm awk zsh
-RUN pacman -S --noconfirm make cmake
-RUN pacman -S --noconfirm nano vim emacs
-RUN echo "epita ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-# Install Yay for AUR packages
-USER epita
-RUN git clone https://aur.archlinux.org/yay.git /home/epita/yay
-RUN cd /home/epita/yay && makepkg --noconfirm -si
-RUN rm -drf /home/epita/yay
-USER root
+# Updates pacman and install default packages
+RUN pacman -Syyuu --noconfirm
+RUN pacman -S --noconfirm man man-db man-pages bash zsh
+RUN pacman -S --noconfirm openssh git wget curl make cmake nano vim
 
 # Install C packages
-RUN pacman -S --noconfirm gcc clang gdb valgrind doxygen
-RUN pacman -S --noconfirm gtk3 gcovr graphviz llvm gtest
-
-USER epita
-RUN yay -S --mflags --nocheck --noconfirm criterion lcov
-USER root
-
-# Install Go packages
-RUN pacman -S --noconfirm go
-
-# Install Ruby packages
-RUN pacman -S --noconfirm ruby
-
-# Install Rust packages
-RUN pacman -S --noconfirm rust
+RUN pacman -S --noconfirm gcc clang gdb valgrind
+RUN pacman -S --noconfirm doxygen gcovr llvm criterion
 
 # Install Python packages
-RUN pacman -S --noconfirm python python-pip
-USER epita
-RUN pip install --user pre-commit pytest
-USER root
+RUN pacman -S --noconfirm python python-pip python-pytest python-pre-commit
 
 # Install Oh-My-Zsh
 USER epita
