@@ -20,6 +20,9 @@ RUN pacman -S --noconfirm openssh git wget curl make cmake nano vim
 RUN pacman -S --noconfirm gcc clang gdb valgrind
 RUN pacman -S --noconfirm doxygen gcovr llvm criterion
 
+# Install other packages
+RUN pacman -S --noconfirm ruby go rust
+
 # Install Python packages
 RUN pacman -S --noconfirm python python-pip python-pytest python-pre-commit
 
@@ -37,6 +40,12 @@ RUN touch /home/epita/.z
 COPY home /home/epita
 USER root
 COPY root /
+
+USER epita
+ARG git_user_name="ADD_YOUR_NAME_HERE"
+ARG git_user_email="ADD_YOUR_EMAIL_HERE"
+RUN git config --global user.name "${git_user_name}"
+RUN git config --global user.email "${git_user_email}"
 
 USER epita
 WORKDIR /home/epita
