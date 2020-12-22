@@ -25,7 +25,7 @@ Simply run the following command and you're good to go:
 
 You will first need to build the docker image from the `Dockerfile`.
 
-    docker build -t epita-container "."
+    docker build -t epita-container --build-arg git_user_name="YOUR_NAME_HERE" --build-arg git_user_email="YOUR_EMAIL_HERE" "."
 
 To run the docker container from the image, simply run:
 
