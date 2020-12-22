@@ -21,11 +21,19 @@ Simply run the following command and you're good to go:
 
     docker run -it francoisdtm/epita-container
 
+Do not forget to set your git name and email:
+
+    git config --global user.name "YOUR_NAME_HERE"
+    git config --global user.email "YOUR_EMAIL_HERE"
+
 ### Building from the sources 📝
 
 You will first need to build the docker image from the `Dockerfile`.
 
-    docker build -t epita-container --build-arg git_user_name="YOUR_NAME_HERE" --build-arg git_user_email="YOUR_EMAIL_HERE" "."
+    docker build -t epita-container \
+        --build-arg git_user_name="YOUR_NAME_HERE" \
+        --build-arg git_user_email="YOUR_EMAIL_HERE" \
+        "."
 
 To run the docker container from the image, simply run:
 
