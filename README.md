@@ -46,6 +46,12 @@ There are two registered users in the container by default:
 - `root` with password `root`
 - `epita` with password `epita`
 
+## VS Code here you are!
+
+Visual Studio Code provides the ability to connect to a Docker container thanks to [this extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). We are providing the `devcontainer.json` file. Feel free to add extensions, settings, mounts, etc.
+
+Advice: because sharing a folder between your computer and the container drastically reduces I/O performance, use the `Clone Repository in Container Volume...` option when creating the container in VS Code. You will then have full I/O performance 😉
+
 ## Installed packages 📦
 
 The list of all packages can be found in the `packages` file.
