@@ -46,6 +46,9 @@ ARG git_user_name="ADD_YOUR_NAME_HERE"
 ARG git_user_email="ADD_YOUR_EMAIL_HERE"
 RUN git config --global user.name "${git_user_name}"
 RUN git config --global user.email "${git_user_email}"
+USER root
+
+RUN pacman -Scc --noconfirm
 
 USER epita
 WORKDIR /home/epita
