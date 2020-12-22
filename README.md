@@ -19,17 +19,17 @@ You have two options. You can either download the pre-compiled image from the Do
 
 Simply run the following command and you're good to go:
 
-    docker run -it francoisdtm/epita-container:1.1
+    docker run -it francoisdtm/epita-container
 
 ### Building from the sources 📝
 
 You will first need to build the docker image from the `Dockerfile`.
 
-    docker build -t epita-container:1.1 "."
+    docker build -t epita-container "."
 
 To run the docker container from the image, simply run:
 
-    docker run -it docker.io/library/epita-container:1.1
+    docker run -it docker.io/library/epita-container
 
 ### Default users 👬
 
