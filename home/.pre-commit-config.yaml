@@ -5,12 +5,12 @@ repos:
     name: coding style
     entry: clang-format --Werror --dry-run
     language: system
-    files: \.(c|h)$
+    files: \.(c|h|cc|hh|hxx)$
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v2.3.0
   hooks:
   - id: trailing-whitespace
-    exclude: tests
+    exclude: ^tests/
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
   rev: 2.1.4
   hooks:
