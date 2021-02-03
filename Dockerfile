@@ -17,7 +17,7 @@ RUN pacman -S --noconfirm man man-db man-pages bash zsh
 RUN pacman -S --noconfirm openssh git wget curl make cmake nano vim
 
 # Install C packages
-RUN pacman -S --noconfirm gcc clang gdb valgrind
+RUN pacman -S --noconfirm gcc clang gdb valgrind boost
 RUN pacman -S --noconfirm doxygen gcovr llvm criterion
 
 # Install other packages
