@@ -11,6 +11,7 @@
 		"eamodio.gitlens",
 		"znck.grammarly",
 		"formulahendry.code-runner",
-		"ms-vsliveshare.vsliveshare"
+		"ms-vsliveshare.vsliveshare",
+		"tabnine.tabnine-vscode"
 	]
 }
