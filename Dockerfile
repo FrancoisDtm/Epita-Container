@@ -1,5 +1,9 @@
 FROM archlinux:base-devel
 
+RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
+    curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
+    bsdtar -C / -xvf "$patched_glibc"
+
 # Add 'epita' user with password 'epita' and set root password to 'root'
 RUN useradd -m -s /bin/zsh epita
 RUN echo -e "epita\nepita" | passwd epita
@@ -12,13 +16,14 @@ RUN cat /cri-mirror >> /etc/pacman.conf
 RUN sed -i 's-usr/share/man/\*--g' /etc/pacman.conf
 
 # Updates pacman and install default packages
-RUN pacman -Syyuu --noconfirm
+RUN pacman -Syyuu --noconfirm --ignore glibc
 RUN pacman -S --noconfirm man man-db man-pages bash zsh
 RUN pacman -S --noconfirm openssh git wget curl make cmake nano vim
+RUN pacman -S --noconfirm autoconf libtool autoconf-archive m4
 
 # Install C packages
 RUN pacman -S --noconfirm gcc clang gdb valgrind boost
-RUN pacman -S --noconfirm doxygen gcovr llvm criterion
+RUN pacman -S --noconfirm doxygen gcovr llvm criterion libev
 
 # Install other packages
 RUN pacman -S --noconfirm ruby go rust
