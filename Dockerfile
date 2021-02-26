@@ -50,7 +50,7 @@ RUN ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.z
 # Copy files and folder
 USER $USERNAME
 RUN touch /home/$USERNAME/.z
-RUN mkdir -p /home/$USERNAME/.vscode-server/extensions
+RUN mkdir -p /home/$USERNAME/.vscode-server
 RUN chown -R $USERNAME /home/$USERNAME/.vscode-server
 COPY home /home/$USERNAME
 USER root
