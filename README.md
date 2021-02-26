@@ -54,6 +54,4 @@ Advice: because sharing a folder between your computer and the container drastic
 
 ## Installed packages 📦
 
-The list of all packages can be found in the `packages` file.
-
-If you think a package is missing, please create an issue. We will be more than happy to discuss and to add it to 😉
+If you think a package is missing, please create an issue. We will be more than happy to discuss and to add it to the container 😉
