@@ -5,6 +5,9 @@
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/zsh"
 	},
+	"mounts": [
+		"source=vscode-epita-extensions,target=/home/epita/.vscode-server/extensions,type=volume"
+	],
 	"extensions": [
 		"ms-vscode.cpptools",
 		"ms-python.python",
