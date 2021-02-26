@@ -55,3 +55,23 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias init-repo='cp ~/.pre-commit-config.yaml . && pre-commit install'
+alias tmp="cd $(mktemp -d)"
+
+lazypush()
+{
+  git add .
+  git commit -a -m "$1"
+  git push
+}
+
+lazytag()
+{
+  git tag -a "$1" -m "$1"
+  git push --tags
+}
+
+lazypushtag()
+{
+  lazypush "$1"
+  lazytag "$1"
+}
