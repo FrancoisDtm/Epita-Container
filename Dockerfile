@@ -51,6 +51,9 @@ ARG git_user_name="ADD_YOUR_NAME_HERE"
 ARG git_user_email="ADD_YOUR_EMAIL_HERE"
 RUN git config --global user.name "${git_user_name}"
 RUN git config --global user.email "${git_user_email}"
+
+RUN wget -O ~/.gitignore https://www.toptal.com/developers/gitignore/api/osx,vscode,c,c++,rust,go
+RUN git config --global core.excludesfile "~/.gitignore"
 USER root
 
 RUN pacman -Scc --noconfirm
