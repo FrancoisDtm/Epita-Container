@@ -46,6 +46,16 @@ There are two registered users in the container by default:
 - `root` with password `root`
 - `epita` with password `epita`
 
+## New commands ✨
+
+This container adds the following commands to zsh:
+
+- `lazypush <commit-name>` : add, commit and push in a single command
+- `lazytag <tag-name>` : tag and push --tags in a single command
+- `lazypushtag <commit-tag-name>` : equivalent to `lazypush` and `lazytag`
+
+- `tmp` : creates a temporary folder and `cd` to it
+
 ## VS Code here you are!
 
 Visual Studio Code provides the ability to connect to a Docker container thanks to [this extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). We are providing the `devcontainer.json` file. Feel free to add extensions, settings, mounts, etc.
