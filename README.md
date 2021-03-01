@@ -13,7 +13,7 @@ Having a container has multiple advantages:
 
 ## How to use? 📋
 
-You have two options. You can either download the pre-compiled image from the Docker Hub, or you can build it from the sources so that you can modify the image as you want.
+You have two options. You can either download the pre-compiled image, or you can build it from the sources so that you can modify the image as you want.
 
 ### Pull pre-build image 🐳
 
