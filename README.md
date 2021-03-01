@@ -15,11 +15,11 @@ Having a container has multiple advantages:
 
 You have two options. You can either download the pre-compiled image from the Docker Hub, or you can build it from the sources so that you can modify the image as you want.
 
-### Pull image from Docker Hub 🐳
+### Pull pre-build image 🐳
 
 Simply run the following command and you're good to go:
-
-    docker run -it francoisdtm/epita-container
+    
+    docker pull docker.pkg.github.com/francoisdtm/epita-container/master:1.0.0
 
 Do not forget to set your git name and email:
 
