@@ -1,6 +1,6 @@
 {
 	"name": "Epita Container",
-	"image": "docker.pkg.github.com/francoisdtm/epita-container/master:1.0.0",
+	"image": "ghcr.io/francoisdtm/epita-container:git-main-latest",
 	"containerUser": "epita",
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/zsh"

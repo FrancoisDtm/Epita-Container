@@ -13,13 +13,13 @@ Having a container has multiple advantages:
 
 ## How to use? 📋
 
-You have two options. You can either download the pre-compiled image, or you can build it from the sources so that you can modify the image as you want.
+You have two options. You can either download the pre-compiled image from GitHub Container Registry, or you can build it from the sources so that you can modify the image as you want.
 
-### Pull pre-build image 🐳
+### Pull pre-build image from GitHub Container Registry 🐳
 
 Simply run the following command and you're good to go:
     
-    docker pull docker.pkg.github.com/francoisdtm/epita-container/master:1.0.0
+    docker pull ghcr.io/francoisdtm/epita-container:git-main-latest
 
 Do not forget to set your git name and email:
 
