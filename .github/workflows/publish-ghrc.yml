@@ -1,0 +1,50 @@
+# from https://github.com/utybo/epita-c-cpp/blob/main/.github/workflows/publish-main.yml
+
+name: "Publish to GHCR (latest)"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: update runc # from https://github.com/zivid/zivid-python/blob/fc31e622161720e0422bfe1bb15d4d3c0be1f972/.github/workflows/main.yml
+        run: |
+          sudo apt-get install --assume-yes libseccomp-dev
+          git clone https://github.com/opencontainers/runc
+          cd runc && git checkout v1.0.0-rc93 && make -j`nproc` && sudo make install
+          cd .. && rm --recursive runc
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        if: github.event_name != 'pull_request'
+        name: Login to GHCR
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      -
+        name: Build and push (date)
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/epita-container:$(date +%s)
+      -
+        name: Build and push (latest)
+        id: docker_build_latest
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/epita-container:latest
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
