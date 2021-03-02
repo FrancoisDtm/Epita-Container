@@ -25,19 +25,12 @@ jobs:
           username: ${{ secrets.GHCR_EMAIL }}
           password: ${{ secrets.GHCR_TOKEN }}
       -
-        name: Build and push (date)
+        name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/francoisdtm/epita-container:$(date +%s)
-      -
-        name: Build and push (latest)
-        id: docker_build_latest
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ghcr.io/francoisdtm/epita-container:latest
+          tags: ghcr.io/francoisdtm/epita-container:git-main-latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
