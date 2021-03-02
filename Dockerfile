@@ -4,9 +4,6 @@ ARG USERNAME=epita
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-ARG GIT_USER_NAME="ADD_YOUR_NAME_HERE"
-ARG GIT_USER_EMAIL="ADD_YOUR_EMAIL_HERE"
-
 RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
     curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
     bsdtar -C / -xvf "$patched_glibc"
@@ -57,9 +54,6 @@ USER root
 COPY root /
 
 USER $USERNAME
-RUN git config --global user.name "${GIT_USER_NAME}"
-RUN git config --global user.email "${GIT_USER_EMAIL}"
-
 RUN wget -O ~/.gitignore https://www.toptal.com/developers/gitignore/api/osx,vscode,c,c++,rust,go
 RUN git config --global core.excludesfile "~/.gitignore"
 USER root
